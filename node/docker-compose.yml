@@ -1,3 +1,19 @@
+consul:
+  image: "progrium/consul:latest"
+  ports:
+    - "8400"
+    - "8500"
+    - "8600"
+  command: "-server -join consul1"
+
+registrator:
+  command: -ip=192.168.99.100 consul://consul:8500
+  image: gliderlabs/registrator
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+  links:
+    - consul
+
 #consul:
 #  image: arthurtsang/docker-consul
 #  hostname: node1
