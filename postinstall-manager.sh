@@ -18,8 +18,8 @@ nodes="$@"
 for node in $nodes
 do
   echo "Adding node $node to cluster $cluster_id"
-  docker run -d swarm join --addr="$node:2375" token://$cluster_id
+  docker run -d swarm join --addr="$node:2375" consul://192.168.50.15:8500/swarm token://$cluster_id
 done
 
-docker run -d -p 5000:5000 swarm manage token://$cluster_id
+docker run -d -p 5000:5000 swarm manage consul://192.168.50.15:8500/swarm token://$cluster_id
 docker run --rm swarm list token://$cluster_id
