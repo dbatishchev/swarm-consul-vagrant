@@ -7,7 +7,7 @@ consul:
   command: "-server -join 192.168.50.15" # нужен ли флаг -advertise 192.168.50.10
 
 registrator:
-  command: -ip=192.168.50.10 consul://consul:8500
+  command: -ip=192.168.50.10 consul://consul:8500 # флаг ip не обязательно должен использоваться
   image: gliderlabs/registrator
   volumes:
     - "/var/run/docker.sock:/tmp/docker.sock"
