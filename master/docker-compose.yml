@@ -1,0 +1,26 @@
+#
+# Consul Service Discovery, ~50mb
+# @see https://hub.docker.com/r/progrium/consul/
+# @see https://www.consul.io/docs/agent/options.html
+#
+consul:
+  command: -server -bootstrap
+  image: progrium/consul:latest
+  ports:
+    - 8400:8400  # rpc/rest
+    - 8500:8500  # ui
+    - 8600:53/udp   # dns
+    - 192.168.99.100:53:53/udp  # dns
+
+#
+# Registrator Service Registry Bridge
+# @see https://hub.docker.com/r/gliderlabs/registrator/
+# @see http://gliderlabs.com/registrator/latest/
+#
+registrator:
+  command: -ip=192.168.99.100 consul://consul:8500
+  image: gliderlabs/registrator
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+  links:
+    - consul
