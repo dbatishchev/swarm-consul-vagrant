@@ -4,7 +4,7 @@
 # @see https://www.consul.io/docs/agent/options.html
 #
 consul:
-  command: -server -bootstrap-expect 2
+  command: -server -bootstrap-expect 2 # нужен ли флаг -advertise 192.168.50.15
   image: progrium/consul:latest
   ports:
     - 8400:8400  # rpc/rest
