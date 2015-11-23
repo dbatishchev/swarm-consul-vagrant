@@ -4,7 +4,7 @@ consul:
     - 8400:8400  # rpc/rest
     - 8500:8500  # ui
     - 8600:53/udp   # dns
-  command: "-server -join 192.168.50.15 -log-level debug" # нужен ли флаг -advertise 192.168.50.10
+  command: "-server -join 192.168.50.15 -log-level debug" # нужен ли флаг -advertise 192.168.50.15
 
 registrator:
   command: -ip=192.168.50.10 consul://consul:8500 # флаг ip не обязательно должен использоваться
