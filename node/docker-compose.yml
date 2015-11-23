@@ -22,7 +22,7 @@ registrator:
 
 join:
   image: swarm
-  command: join --advertise=192.168.50.10:2375 --addr=192.168.50.10:2375 consul://192.168.50.10:8500/swarm
+  command: join --addr=192.168.50.10:2375  consul://192.168.50.10:8500/swarm
   links:
     - consul
 

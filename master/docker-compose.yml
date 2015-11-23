@@ -34,6 +34,13 @@ manage:
   image: swarm
   ports:
     - "5000:5000"
+    - "8333:2375"
   command: manage --advertise=192.168.50.10:2375 consul://192.168.50.15:8500/swarm
+  links:
+    - consul
+
+join:
+  image: swarm
+  command: join --addr=192.168.50.15:2375 consul://192.168.50.15:8500/swarm
   links:
     - consul
