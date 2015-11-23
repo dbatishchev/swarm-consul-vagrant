@@ -19,7 +19,7 @@ echo "export DOCKER_HOST=tcp://0.0.0.0:2375" >> /root/.bashrc
 
 usermod -aG docker vagrant | sudo sh
 
-docker pull swarm
+#docker pull swarm
 
 #cluster_id=`docker run --rm swarm create`
 #nodes="$@"
@@ -29,6 +29,6 @@ docker pull swarm
 #  docker run -d swarm join --addr="$node:2375" consul://192.168.50.15:8500/swarm # token://$cluster_id
 #done
 
-docker run -d -p 5000:5000 swarm manage consul://192.168.50.15:8500/swarm # token://$cluster_id
+#docker run -d -p 5000:5000 swarm manage consul://192.168.50.15:8500/swarm # token://$cluster_id
 
 #docker run --rm swarm list token://$cluster_id

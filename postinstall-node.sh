@@ -17,4 +17,4 @@ sudo usermod -aG docker vagrant
 curl -sSL https://github.com/docker/compose/releases/download/1.5.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose | sudo sh
 chmod +x /usr/local/bin/docker-compose | sudo sh
 
-docker run -d swarm join --addr="192.168.50.10:2375" consul://192.168.50.15:8500/swarm # token://$cluster_id
+#docker run -d swarm join --addr="192.168.50.10:2375" consul://192.168.50.15:8500/swarm # token://$cluster_id

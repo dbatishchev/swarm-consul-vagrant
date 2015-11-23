@@ -4,9 +4,14 @@
 # @see https://www.consul.io/docs/agent/options.html
 #
 consul:
-  command: -server -bootstrap -log-level debug # нужен ли флаг -advertise 192.168.50.10   # -bootstrap-expect
+  command: -server -advertise 192.168.50.15 -bootstrap -log-level debug # нужен ли флаг   # -bootstrap-expect
   image: progrium/consul:latest
   ports:
+    - 8300:8300
+    - 8301:8301
+    - 8301:8301/udp
+    - 8302:8302
+    - 8302:8302/udp
     - 8400:8400  # rpc/rest
     - 8500:8500  # ui
     - 8600:53/udp   # dns
@@ -22,5 +27,13 @@ registrator:
   image: gliderlabs/registrator
   volumes:
     - "/var/run/docker.sock:/tmp/docker.sock"
+  links:
+    - consul
+
+manage:
+  image: swarm
+  ports:
+    - "5000:5000"
+  command: manage --advertise=192.168.50.10:2375 consul://192.168.50.15:8500/swarm
   links:
     - consul
