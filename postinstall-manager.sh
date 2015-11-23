@@ -16,7 +16,9 @@ chmod +x /usr/local/bin/docker-compose | sudo sh
 export DOCKER_HOST=tcp://0.0.0.0:2375
 echo "export DOCKER_HOST=tcp://0.0.0.0:2375" >> /root/.bashrc
 
-docker pull swarm
+usermod -aG docker vagrant | sudo sh
+
+docker pull swarm | sudo sh
 cluster_id=`docker run --rm swarm create`
 nodes="$@"
 for node in $nodes
