@@ -11,8 +11,10 @@ service docker stop
 echo 'DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"' >> /etc/default/docker
 service docker start
 
-usermod -aG docker vagrant | sudo sh
+sudo usermod -aG docker vagrant
 
 # Install docker-compose
 curl -sSL https://github.com/docker/compose/releases/download/1.5.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose | sudo sh
 chmod +x /usr/local/bin/docker-compose | sudo sh
+
+docker run -d swarm join --addr="192.168.50.10:2375" consul://192.168.50.15:8500/swarm # token://$cluster_id
