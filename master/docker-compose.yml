@@ -53,7 +53,7 @@ nginx:
   ports:
     - 80:80
   volumes:
-    - ./etc/consul-template:/etc/consul-template:ro
+    - ./nginx/consul-template:/etc/consul-template:ro
   environment:
     CONSUL_URL: 192.168.50.15:8500
     SERVICE_NAME: nginx
