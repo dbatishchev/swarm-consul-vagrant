@@ -27,7 +27,7 @@ join:
     - consul
 
 service:
-  build: ./../services/service
+  build: ./service
   ports:
     - 5000
   dns:
