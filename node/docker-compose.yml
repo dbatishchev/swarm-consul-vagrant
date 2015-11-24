@@ -26,6 +26,17 @@ join:
   links:
     - consul
 
+service:
+  build: ./../services/service
+  ports:
+    - 5000
+  dns:
+    - 192.168.50.10
+  dns_search: service.consul
+  environment:
+    SERVICE_NAME: service
+    SERVICE_TAGS: route-http
+
 #consul:
 #  image: arthurtsang/docker-consul
 #  hostname: node1

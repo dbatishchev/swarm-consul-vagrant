@@ -44,3 +44,14 @@ join:
   command: join --addr=192.168.50.15:2375 consul://192.168.50.15:8500/swarm
   links:
     - consul
+
+nginx:
+  build: ../services/nginx
+  links:
+    - consul
+  ports:
+    - 80:80
+  volumes:
+    - ./nginx/templates:/etc/consul-templates
+  environment:
+    SERVICE_NAME: nginx

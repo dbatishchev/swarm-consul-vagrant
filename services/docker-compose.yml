@@ -1,19 +1,4 @@
 #
-# Nginx with Consul Template Support, ~40mb
-# @see https://hub.docker.com/r/1science/nginx/
-#
-nginx:
-  build: ./nginx
-  links:
-    - consul
-  ports:
-    - 80
-  volumes:
-    - ./nginx/templates:/etc/consul-templates
-  environment:
-    SERVICE_NAME: nginx
-
-#
 # A Micoservice with DNS pointing towards Consul
 # That gets HTTP traffic from Nginx by route-http tag
 #
