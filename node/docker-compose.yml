@@ -36,3 +36,10 @@ service:
   environment:
     SERVICE_NAME: service
     SERVICE_TAGS: route-http
+
+redis:
+  image: redis
+  ports:
+    - 6379:6379
+  environment:
+    SERVICE_NAME: redis
