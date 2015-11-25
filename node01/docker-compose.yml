@@ -20,26 +20,26 @@ registrator:
   links:
     - consul
 
-join:
-  image: swarm
-  command: join --addr=192.168.50.10:2375  consul://192.168.50.10:8500/swarm
-  links:
-    - consul
+#join:
+#  image: swarm
+#  command: join --addr=192.168.50.10:2375  consul://192.168.50.10:8500/swarm
+#  links:
+#    - consul
 
-service:
-  build: ./service
-  ports:
-    - 5000
-  dns:
-    - 192.168.50.10
-  dns_search: service.consul
-  environment:
-    SERVICE_NAME: service
-    SERVICE_TAGS: route-http
-
-redis:
-  image: redis
-  ports:
-    - 6379:6379
-  environment:
-    SERVICE_NAME: redis
+#service:
+#  build: ./service
+#  ports:
+#    - 5000
+#  dns:
+#    - 192.168.50.10
+#  dns_search: service.consul
+#  environment:
+#    SERVICE_NAME: service
+#    SERVICE_TAGS: route-http
+#
+#redis:
+#  image: redis
+#  ports:
+#    - 6379:6379
+#  environment:
+#    SERVICE_NAME: redis

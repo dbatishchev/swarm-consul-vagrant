@@ -15,7 +15,7 @@ consul:
     - 8400:8400  # rpc/rest
     - 8500:8500  # ui
     - 8600:53/udp   # dns
-    - 192.168.50.15:53:53/udp  # dns
+    - 8700:53:53/udp  # dns
 
 #
 # Registrator Service Registry Bridge
@@ -39,13 +39,22 @@ manage:
   links:
     - consul
 
-join:
+join_1:
   image: swarm
-  command: join --addr=192.168.50.15:2375 consul://192.168.50.15:8500/swarm
+  command: join --addr=192.168.50.10:2375 consul://192.168.50.15:8500/swarm
   links:
     - consul
 
-# https://github.com/1science/docker-nginx/tree/latest/consul
+join_2:
+  image: swarm
+  command: join --addr=192.168.50.11:2375 consul://192.168.50.15:8500/swarm
+  links:
+    - consul
+
+#
+# Nginx With Consul Template
+# @see https://github.com/1science/docker-nginx/tree/latest/consul
+#
 nginx:
   image: 1science/nginx:consul
   links:
@@ -57,3 +66,9 @@ nginx:
   environment:
     CONSUL_URL: 192.168.50.15:8500
     SERVICE_NAME: nginx
+
+test:
+  image: 1science/nginx:consul
+  environment:
+    CONSUL_URL: 192.168.50.15:8500
+    SERVICE_NAME: oloo
