@@ -47,7 +47,7 @@ join:
 
 # https://github.com/1science/docker-nginx/tree/latest/consul
 nginx:
-  build: ./nginx
+  image: 1science/nginx:consul
   links:
     - consul
   ports:
